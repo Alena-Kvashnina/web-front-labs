@@ -25,5 +25,22 @@ footer {
     margin: 10px;
 }
 a {
+    color: green;
     text-decoration: none;
+}
+a:link{
+    color: rgb(0, 0, 0);
+}
+a:visited{
+    color: rgb(70, 246, 12);
+}
+a:hover {
+    color: rgb(236, 54, 69);
+    text-decoration: underline;
+    background-color: rgb(255, 241, 134);
+    font-weight: bold;
+}
+a:active {
+    color: black;
+    opacity: 0.3;
 }
