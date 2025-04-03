@@ -24,17 +24,21 @@ footer {
     font-family: Arial;
     margin: 10px;
 }
+
 a {
     color: green;
     text-decoration: none;
     transition: 1s 2s;
 }
+
 a:link{
     color: rgb(0, 0, 0);
 }
+
 a:visited{
     color: rgb(70, 246, 12);
 }
+
 a:hover {
     color: rgb(236, 54, 69);
     text-decoration: underline;
@@ -42,7 +46,24 @@ a:hover {
     font-weight: bold;
     transition: 0.3s;
 }
+
 a:active {
     color: black;
     opacity: 0.3;
+}
+
+div.menu {
+    border: 5px solid #ffd43a80;
+    border-radius: 5px;
+    width: 250px;
+    margin: 0 auto;
+}
+
+div.menu:hover {
+    background-color: #f8f23e30;
+    box-shadow: 0 0 15px #f4c21e30;
+}
+
+.web {
+    text-align: center;
 }
