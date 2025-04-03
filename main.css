@@ -23,6 +23,11 @@ footer {
     color: rgb(140, 73, 255);
     font-family: Arial;
     margin: 10px;
+    text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 a {
@@ -66,4 +71,8 @@ div.menu:hover {
 
 .web {
     text-align: center;
+}
+
+main {
+    margin: 10px 20px 45px;
 }
