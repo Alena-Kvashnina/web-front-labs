@@ -76,3 +76,11 @@ div.menu:hover {
 main {
     margin: 10px 20px 45px;
 }
+
+div.motiv:hover {
+    border: 5px solid #ffd43a80;
+    border-radius: 5px;
+    width: 250px;
+    margin: 0 auto;
+    color: black;
+}
