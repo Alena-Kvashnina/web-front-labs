@@ -106,6 +106,12 @@
                 let result = a**b;
                 alert (a + ' в степени ' + b + ' = ' + result);
             }
+            function changeOutput(buttonNum, backColor, textColor, border, borderRad) {
+                let output = document.getElementById('output');
+                output.innerHTML = 'Нажата кнопка' + buttonNum;
+                output.style.backgroundColor = backColor;
+                output.style.color = textColor;
+            }
         </script>
         <style>
             .message{
@@ -124,6 +130,13 @@
                 cursor: pointer;
                 display: inline-block;
             }
+            #output {
+                border: 1px solid;
+                width: 300px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+            }
         </style>
     </head>
 
@@ -136,7 +149,17 @@
             <label>Первое число: <input type="number" value="5154" id="numberA"></label><br>
             <label>Второе число: <input type="number" value="7891" id="numberB"></label><br>
             <div class="message" onclick="showSum()">Найти сумму чисел</div>
+            
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+            
+            <div>
+                <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', '10px solid yellow', '20px')">
+                <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', '5px solid lime', '30px')">
+                <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'pink', 'black', '30px solid black', '5px')">
+                <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'green', 'blue', '5px solid blue', '10px')">
+            </div>
+
+            <div id="output"></div>
             <div class="message" onclick="showMult()">Найти произведение чисел</div>
             <div class="message" onclick="showSubs()">Найти разность чисел</div>
             <div class="message" onclick="showDiv()">Найти отношение чисел</div>
