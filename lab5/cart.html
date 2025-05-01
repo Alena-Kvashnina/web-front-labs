@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Квашнина Алёна Юрьевна. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon-48x48.ico">
+        <script>
+             function showAuthor() {
+                let author = 'Автор страницы: \nКвашнина Алёна Юрьевна';
+                alert(author);
+            }
+            function showMessage() {
+                let message = 'Лабораторная работа 5\nФБ НГТУ 19.04.2025';
+                alert (message);
+            }
+            function calculateTotal() {
+                let inputs = document.querySelectorAll('input[type="number"]');
+                let total = 0;
+
+                for (let input of inputs) {
+                    if (input.value.trim() === '') continue;
+                    let quantity = parseInt(input.value);
+                    let price = parseFloat(input.getAttribute('data-price'));
+
+                    if (quantity == '') {
+                        continue
+                    }
+
+                    if (quantity < 0 || isNaN(quantity)) {
+                        alert("Введите положительное число!");
+                        input.focus();
+                        return;
+                    }
+
+                    total += quantity * price;
+                }
+
+                document.getElementById('total').innerHTML = `Общая сумма: ${total}₽`;
+            }
+
+            function clearCart() {
+                    let inputs = document.querySelectorAll('input[type="number"]');
+                    for (let input of inputs) {
+                        input.value = '';
+                    }
+                    let totalPrice = document.getElementById('total');
+                    totalPrice.innerHTML = '';
+                }
+        </script>
+        <style>
+            h1{
+                margin-top: 40px;
+                margin-bottom: 0;
+            }
+            .cart {
+                text-align: center;
+                width: 500px;
+                height: 550px;
+                background-color: rgb(243, 243, 229);
+                border: 15px, solid,  rgb(255, 22, 80);
+                border-radius: 15px;
+                margin: auto;
+                transition: 1s;
+            }
+            label {
+                margin-top: 15px;
+                margin-bottom: 5px;
+                margin-left: 115px;
+                text-align: left;
+                display: block;
+            }
+            input {
+                margin: 5px;
+                display: 10px;
+                height: 35px;
+            }
+            button {
+                margin: 10px;
+            }
+            .cart:hover{
+                box-shadow: 0 0 50px rgba(255, 0, 60, 0.8);
+                transition: 1s;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header onclick="showAuthor()">
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+
+        <main>
+            <div class="cart">
+                <h1>Корзина товаров</h1>
+
+            <label>Яблоки (100р/шт): <input type="number" min="0" placeholder="Введите количество в штуках" data-price="100"></label><br>
+            <label>Груши (80р/шт): <input type="number" min="0" placeholder="Введите количество в штуках" data-price="80"></label><br>
+            <label>Апельсины (150р/шт): <input type="number" min="0" placeholder="Введите количество в штуках" data-price="150"></label><br>
+            <label>Дыни (300р/шт): <input type="number" min="0" placeholder="Введите количество в штуках" data-price="300"></label><br>
+
+            <button onclick="calculateTotal()">Рассчитать</button>
+            <button onclick="clearCart()">Очистить</button>
+
+            <div id="total"></div>
+            </div>
+        </main>
+
+        <footer ondblclick="showMessage()">
+            &copy; Алёна Квашнина, ФБИ-34, 2 курс, 2025
+        </footer>
+    </body>
+</html>
