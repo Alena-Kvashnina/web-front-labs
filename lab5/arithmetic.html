@@ -77,6 +77,35 @@
                 let result = a/b;
                 alert (a + ' / ' + b + ' = ' + result);
             }
+            function showExp() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let a = parseInt(inputA.value)
+                let b = parseInt(inputB.value)
+                if (a == 0 && b == 0) {
+                    alert('Ошибка!');
+                    return;
+                }
+                if(isNaN(a)) {
+                    alert('Введите числовое значение в первое поле');
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    return;
+                }
+                if(isNaN(b)) {
+                    alert('Введите числовое значение во второе поле');
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+                inputA.style.color = '';
+                inputA.style.borderColor = '';
+                inputB.style.color = '';
+                inputB.style.borderColor = '';
+
+                let result = a**b;
+                alert (a + ' в степени ' + b + ' = ' + result);
+            }
         </script>
         <style>
             .message{
