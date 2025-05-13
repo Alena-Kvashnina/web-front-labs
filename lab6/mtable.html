@@ -16,6 +16,28 @@
                     tbl.innerHTML += s;
                 }
             }
+            function calculateTotal() {
+                let tbl = document.getElementById('mtable');
+                tbl.innerHTML = '<h1>Таблица умножения</h1>';
+                     
+                let factor = parseInt(document.getElementById('factor').value);
+                let start = parseInt(document.getElementById('start').value);
+                let end = parseInt(document.getElementById('end').value);
+
+                if (isNaN(factor) || isNaN(start) || isNaN(end)) {
+                    tbl.innerHTML += "<div style='color:red;'>Пожалуйста, заполните все поля.</div>";
+                return;
+                }
+
+                if (start > end) {
+                    [start, end] = [end, start];
+                }
+
+                for (let i = start; i <= end; i++) {
+                    let s = `<div>${i} * ${factor} = ${i * factor}</div>`;
+                    tbl.innerHTML += s;
+                }
+            }
         </script>
         <style>
             #mtable {
@@ -26,6 +48,27 @@
                 background-color: rgb(255, 255, 240);
                 cursor: pointer;
             }
+            label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        input {
+            margin-left: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: rgb(255, 0, 85);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(200, 0, 65);
+        }
         </style>
     </head>
 
@@ -36,6 +79,10 @@
 
         <main>
             <div id="mtable"></div>
+            <label>Умножить на:<input type="number" id="factor" min="0" value="7"></label>
+            <label>Начать с:<input type="number" id="start" min="0" value="1"></label>
+            <label>Закончить на:<input type="number" id="end" min="0" value="10"></label>
+            <button onclick="calculateTotal()">Таблица</button>
         </main>
 
         <footer>
