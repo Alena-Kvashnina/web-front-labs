@@ -18,12 +18,39 @@
                 out.innerHTML += "Дата и время для пакистанской локали: " + today.toLocaleString('en-PK') + "<br>";
                 out.innerHTML += "Дата и время для китайской локали: " + today.toLocaleString('zh-CN') + "<br>";
             }
+
+            function changeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                header.style.color = rgb;
+            }
+
+            let timerNum;
+
+            function startChangeColors() {
+                changeColors();
+                timerNum = setInterval(changeColors, 1500);
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() {
+                clearInterval(timerNum);
+            }
         </script>
         <style>
             main {
             text-align: center;
             margin-top: 40px;
-        }
+            }
+
+            header {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            transition: color 0.8s ease;
+            }
+
             #current-date {
             font-size: 18px;
             background-color: #d0eaff;
@@ -32,7 +59,13 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(255, 5, 63, 0.1);
             line-height: 1.8;
-        }
+            }
+
+            button { 
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            }
         </style>
     </head>
 
@@ -43,7 +76,10 @@
 
         <main>
            <div id="current-date"></div>
-           
+           <div>
+               <button onclick="startChangeColors()" id="start-btn">Старт</button>
+               <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+           </div>
         </main>
 
         <footer>
