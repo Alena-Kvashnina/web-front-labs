@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Positive Technologies</title>
+    <link rel="icon" href="../logo.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <style>
+        html {
+        scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        .menu li {
+            margin-bottom: 15px;
+        }
+
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 8px 0;
+            transition: color 0.3s;
+        }
+
+        .menu li a:hover,
+        .menu li a.active {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+
+        main {
+            flex: 1;
+            margin-right: 250px;
+            padding: 60px 40px;
+            box-sizing: border-box;
+            background-image: url('pt.png');
+            background-repeat: no-repeat;
+            background-position: calc(100% + 70px) 200px;
+            background-size: 600px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .company-name {
+            font-size: 100px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .tagline {
+            font-size: 30px;
+            color: #666;
+            margin-bottom: 50px;
+            font-weight: 300;
+            text-align: left;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 100px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .stat-value {
+            font-size: 50px;
+            color: #ff2710;
+            font-weight: 700;
+        }
+
+        section#second-screen {
+            background: white;
+            padding: 80px 0;
+            margin-top: 180px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .text-block, .image-block {
+            flex: 1 1 400px;
+        }
+
+        .section-heading {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: #111;
+            text-align: left;
+        }
+
+        .segment-data {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .segment-values {
+            display: flex;
+            gap: 50px;
+        }
+
+        .value-block {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .percent {
+            font-size: 50px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .label {
+            font-size: 16px;
+            color: #888;
+            max-width: 200px;
+        }
+
+        .diagram-caption {
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+            max-width: 100%;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #222;
+            text-align: left;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .report-section {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .report-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .report-link {
+            display: inline-block;
+            background-color: #ff2710;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .report-link:hover {
+            background-color: #e61e00;
+        }
+
+        .report-section {
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+        
+        .report-container {
+            border: 1px solid #e0e0e0; /* Тонкая бледно-серая рамка */
+            border-radius: 12px; /* Закругленные углы */
+            padding: 60px;
+            width: 100%;
+            max-width: 1000px;
+            transition: all 0.3s ease;
+            position: center;
+            box-sizing: border-box;
+            text-align: left;
+        }
+        
+        .report-container:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .report-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 60px;
+            transition: all 0.3s ease;
+            text-align: left;
+
+        }
+        
+        .report-container:hover .report-title {
+            color: #ff2710; /* Красный цвет при наведении */
+            transform: scale(1.02); /* Увеличение текста */
+        }
+        
+        .report-link {
+            display: inline-block;
+            background-color: #ff2710;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+            margin-left: 0;
+            align-self: flex-start;
+        }
+        
+        .report-link:hover {
+            background-color: #e61e00;
+            transform: translateY(-2px);
+        }
+        
+        .posi-label {
+            position: absolute;
+            top: 250px;
+            right: 20px;
+            color: #ff2710;
+            font-size: 100px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .report-container:hover .posi-label {
+            transform: scale(1.1); /* Увеличение текста POSI */
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #ff2710;
+            color: white;
+            font-size: 24px;
+            padding: 10px 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: #e61e00;
+            transform: scale(1.1);
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column-reverse;
+            }
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                right: auto;
+                padding: 20px;
+            }
+
+            main {
+                margin-right: 0;
+                padding: 30px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <main>
+        <div class="main-content">
+            <h1 class="company-name">Positive Technologies</h1>
+            <p class="tagline">Лидер результативной кибербезопасности</p>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-label">продуктов</span>
+                    <span class="stat-value" data-target="25">25+</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">партнеров</span>
+                    <span class="stat-value" data-target="500">500+</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">акционеров</span>
+                    <span class="stat-value" data-target="220000">220000+</span>
+                </div>
+            </div>
+
+            <section style="background: white; padding: 80px 40px; margin-top: 240px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; min-height: 100vh;" id="second-screen">               
+                <div class="text-block">
+                    <h2 class="section-heading">
+                        Рынок ИБ в России формируют несколько основных сегментов, наибольшая его часть сосредоточена в двух:
+                    </h2>
+                    <div class="segment-data">
+                        <svg width="120" height="120" viewBox="0 0 36 36" style="margin-right: 20px;">
+                            <!-- Красная дуга (73%) -->
+                            <path d="M18 2.5 A 15.5 15.5 0 1 1 2.5 18" stroke="#ff2710" stroke-width="3" fill="none" stroke-linecap="round" />
+                            <!-- Синяя дуга (27%) -->
+                            <path d="M2.5 18 A 15.5 15.5 0 0 1 18 2.5" stroke="#005BBB" stroke-width="3" fill="none" stroke-linecap="round" />
+                            <text x="18" y="20" font-size="6" font-weight="600" text-anchor="middle" fill="#000">ИБ</text>
+                        </svg>
+                        <div style="flex: 1;">
+                            <div class="segment-values">
+                                <div class="value-block">
+                                    <div class="percent" style="color: #ff2710;">73%</div>
+                                    <div class="label">средства защиты информации</div>
+                                </div>
+                                <div class="value-block">
+                                    <div class="percent" style="color: #005BBB;">27%</div>
+                                    <div class="label">услуги по защите информации</div>
+                                </div>
+                            </div>
+                            <div class="diagram-caption" title="Данные Центра стратегических разработок (ЦСР) на октябрь 2024 года">
+                                Совокупная доля услуг и поставок средств защиты информации по результатам 2023 года
+                            </div>
+                        </div>
+                    </div>
+                    <p class="description">
+                        Российский рынок кибербезопасности продолжает расти темпами, значительно опережающими рост мирового рынка ИБ.
+                        Однако согласно обновленному прогнозу на 2024–2028 годы, объем рынка кибербезопасности в России в 2023 составил
+                        248 млрд рублей, что на 4 млрд рублей меньше, чем было заявлено в предыдущем прогнозе развития рынка на 2023–2027 годы.
+                        В ближайшие пять лет рынок предположительно вырастет с 302 млрд рублей до 715 млрд рублей (в 2,4 раза)
+                        с ежегодным приростом 20–25%.
+                    </p>
+                </div>
+                <div class="image-block">
+                    <img src="ris.png" alt="Прогноз графика">
+                </div>
+                <section class="report-section">
+                    <div class="report-container">
+                        <span class="posi-label">POSI</span>
+                        <div class="report-header">
+                            <h2 class="report-title">Годовой отчет Positive Technologies</h2>
+                        </div>
+                        <a href="https://ar2024.ptsecurity.com/" class="report-link" target="_blank">Читать отчет ></a>
+                    </div>
+                </section>
+        </div>
+    </main>
+
+    <nav class="sidebar">
+        <div class="logo">Positive Technologies</div>
+        <ul class="menu">
+            <li><a href="index.html" class="active">О компании</a></li>
+            <li><a href="news.html">Новости</a></li>
+            <li><a href="currency.html">Курс валют</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+            <li><a href="video.html">Видео</a></li>
+            <a href="#" class="back-to-top" title="Наверх">↑</a>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const counters = document.querySelectorAll(".stat-value");
+        counters.forEach(counter => {
+            const target = +counter.getAttribute("data-target");
+            let count = 0;
+            const duration = 2000;
+            const step = Math.ceil(target / (duration / 16));
+            function updateCounter() {
+                count += step;
+                if (count >= target) {
+                    counter.textContent = target.toLocaleString() + "+";
+                } else {
+                    counter.textContent = count.toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                }
+            }
+            updateCounter();
+        });
+    });
+</script>
+</body>
+</html>
