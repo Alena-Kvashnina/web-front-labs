@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Видео — Positive Technologies</title>
+  <link rel="icon" href="../logo.png" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin-top: 50px;
+    }
+
+    .menu li {
+      margin-bottom: 15px;
+    }
+
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 8px 0;
+      transition: color 0.3s;
+    }
+
+    .menu li a:hover,
+    .menu li a.active {
+      color: #e74c3c;
+      font-weight: 500;
+    }
+
+    main {
+      flex: 1;
+      margin-right: 250px;
+      padding: 60px 40px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ff1900;
+      margin-bottom: 20px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .video-description {
+      font-size: 18px;
+      line-height: 1.7;
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column-reverse;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        right: auto;
+        padding: 20px;
+      }
+
+      main {
+        margin-right: 0;
+        padding: 30px;
+      }
+
+      iframe {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main>
+      <h1>Positive Technologies</h1>
+      <div class="subtitle">Итоги года POSI</div>
+
+      <iframe src="https://www.youtube.com/embed/qoei-AJP_iY" allowfullscreen></iframe>
+
+      <div class="video-description">
+        <strong>Прямой эфир состоялся 7 апр. 2025 г.</strong><br><br>
+        Седьмого апреля мы представили итоговые результаты деятельности Positive Technologies за 2024 год:<br><br>
+
+        • Рассказали о наших главных технологических достижениях.<br>
+        • Поделились, как планируем вернуться к целевым показателям темпов роста бизнеса.<br>
+        • Поговорили о том, какие цели ставим перед собой в этом году и за счет чего будем их достигать.<br><br>
+
+        Традиционно в завершающей части топ-менеджеры компании ответили на вопросы инвесторов.<br><br>
+
+        <strong>Таймкоды:</strong><br>
+        00:00 — Начало<br>
+        00:49 — Денис Баранов, генеральный директор Positive Technologies<br>
+        04:55 — Максим Филиппов, заместитель генерального директора Positive Technologies<br>
+        39:54 — Андрей Кузин, операционный директор Positive Technologies<br>
+        59:27 — Ответы на вопросы<br>
+        1:51:00 — Каким будет PHDays Fest в 2025 году
+      </div>
+    </main>
+
+    <nav class="sidebar">
+      <div class="logo">Positive Technologies</div>
+      <ul class="menu">
+        <li><a href="company.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="currency.html">Курс валют</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="video.html" class="active">Видео</a></li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>
