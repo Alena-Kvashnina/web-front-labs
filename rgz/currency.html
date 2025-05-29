@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Курс валют — Positive Technologies</title>
+  <link rel="icon" href="../logo.png" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin-top: 50px;
+    }
+
+    .menu li {
+      margin-bottom: 15px;
+    }
+
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 8px 0;
+      transition: color 0.3s;
+    }
+
+    .menu li a:hover,
+    .menu li a.active {
+      color: #e74c3c;
+      font-weight: 500;
+    }
+
+    main {
+      flex: 1;
+      margin-right: 250px;
+      padding: 60px 40px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    .converter {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .converter label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .converter input,
+    .converter select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .chart-container {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    canvas {
+      width: 100% !important;
+      max-width: 100%;
+      height: auto !important;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #ff2710;
+      color: white;
+      font-size: 24px;
+      padding: 10px 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+
+    .back-to-top:hover {
+      background-color: #e61e00;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column-reverse;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        right: auto;
+        padding: 20px;
+      }
+
+      main {
+        margin-right: 0;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <main>
+      <h1>Курс валют</h1>
+      <div class="converter">
+        <label for="amount">Сумма:</label>
+        <input type="number" id="amount" placeholder="Введите сумму" />
+
+        <label for="from">Из валюты:</label>
+        <select id="from">
+          <option value="RUB">Российский рубль (RUB)</option>
+          <option value="USD">Доллар США (USD)</option>
+        </select>
+
+        <label for="to">В валюту:</label>
+        <select id="to">
+          <option value="USD">Доллар США (USD)</option>
+          <option value="RUB">Российский рубль (RUB)</option>
+        </select>
+
+        <label for="result">Результат:</label>
+        <input type="text" id="result" readonly />
+      </div>
+
+      <div class="chart-container">
+        <h2>Динамика курса USD за последний месяц</h2>
+        <canvas id="exchangeChart"></canvas>
+        <p id="selectedDate"></p>
+      </div>
+    </main>
+
+    <nav class="sidebar">
+      <div class="logo">Positive Technologies</div>
+      <ul class="menu">
+        <li><a href="company.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="currency.html" class="active">Курс валют</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="video.html">Видео</a></li>
+      </ul>
+      <a href="#" class="back-to-top" title="Наверх">↑</a>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const amountInput = document.getElementById('amount');
+    const fromSelect = document.getElementById('from');
+    const toSelect = document.getElementById('to');
+    const resultInput = document.getElementById('result');
+    const selectedDate = document.getElementById('selectedDate');
+    let usdRate = 0;
+
+    fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then(response => response.json())
+      .then(data => {
+        usdRate = data.Valute.USD.Value;
+        convertCurrency();
+      });
+
+    function convertCurrency() {
+      const amount = parseFloat(amountInput.value);
+      const from = fromSelect.value;
+      const to = toSelect.value;
+
+      if (isNaN(amount)) {
+        resultInput.value = '';
+        return;
+      }
+
+      let result = 0;
+
+      if (from === 'RUB' && to === 'USD') {
+        result = amount / usdRate;
+      } else if (from === 'USD' && to === 'RUB') {
+        result = amount * usdRate;
+      } else {
+        result = amount;
+      }
+
+      resultInput.value = result.toFixed(2);
+    }
+
+    amountInput.addEventListener('input', convertCurrency);
+    fromSelect.addEventListener('change', convertCurrency);
+    toSelect.addEventListener('change', convertCurrency);
+
+    async function loadChartData() {
+      const labels = [];
+      const rates = [];
+      let lastValidRate = null;
+
+      for (let i = 30; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dd = String(date.getDate()).padStart(2, '0');
+        const mm = String(date.getMonth() + 1).padStart(2, '0');
+        const yyyy = date.getFullYear();
+        const formatted = `${yyyy}-${mm}-${dd}`;
+        labels.push(formatted);
+
+        try {
+          const res = await fetch(`https://www.cbr-xml-daily.ru/archive/${yyyy}/${mm}/${dd}/daily_json.js`);
+          if (res.ok) {
+            const data = await res.json();
+            const usd = data.Valute.USD.Value / data.Valute.USD.Nominal;
+            lastValidRate = usd;
+            rates.push(usd);
+          } else {
+            rates.push(lastValidRate);
+          }
+        } catch {
+          rates.push(lastValidRate);
+        }
+      }
+
+      const ctx = document.getElementById('exchangeChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Курс USD',
+            data: rates,
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          onClick: (e, elements) => {
+            if (elements.length > 0) {
+              const index = elements[0].index;
+              const date = labels[index];
+              const rate = rates[index];
+              selectedDate.textContent = `Дата: ${date}, Курс: ${rate}`;
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false
+            }
+          }
+        }
+      });
+    }
+
+    loadChartData();
+  </script>
+</body>
+</html>
