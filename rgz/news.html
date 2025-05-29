@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Новости — Positive Technologies</title>
+  <link rel="icon" href="../logo.png" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+      display: flex;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .content {
+      flex-grow: 1;
+      margin-right: 250px;
+      padding: 60px 40px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      font-size: 80px;
+      margin-bottom: 30px;
+    }
+
+    .news-card {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .news-card h2 {
+      color: #3690ff;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    .news-card.open h2 {
+      color: #ff4f4f;
+    }
+
+    .news-card p {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .news-card.open p {
+      display: block;
+    }
+
+    .date {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .arrow {
+      float: right;
+      transition: transform 0.3s ease;
+    }
+
+    .news-card.open .arrow {
+      transform: rotate(90deg);
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #1a1a1a;
+      color: white;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin-top: 50px;
+    }
+
+    .menu li {
+      margin-bottom: 15px;
+    }
+
+    .menu li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+      padding: 8px 0;
+      transition: color 0.3s;
+    }
+
+    .menu li a:hover,
+    .menu li a.active {
+      color: #e74c3c;
+      font-weight: 500;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #ff2710;
+      color: white;
+      font-size: 24px;
+      padding: 10px 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+      z-index: 999;
+    }
+
+    .back-to-top:hover {
+      background-color: #e61e00;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column-reverse;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        right: auto;
+        padding: 20px;
+      }
+
+      .content {
+        margin-right: 0;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <h1>Новости</h1>
+
+    <div class="news-card">
+      <div class="date">21 мая 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies запустит первый в России сервис для защиты мобильных приложений от обратной разработки<span class="arrow">▶</span></h2>
+      <p>Лидер результативной кибербезопасности Positive Technologies анонсирует PT MAZE — первый в России сервис для защиты мобильных приложений от реверс-инжиниринга. Услуга призвана сделать взлом дорогим для злоумышленника и заставить его отказаться от идеи атаковать.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">16 мая 2025</div>
+      <h2 onclick="toggleNews(this)">День инвестора на киберфестивале Positive Hack Days пройдет 23 мая<span class="arrow">▶</span></h2>
+      <p>В этом году Positive Technologies проводит международный фестиваль по кибербезопасности PHDays с 22 по 24 мая в «Лужниках».</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">13 мая 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies опубликовала интерактивный годовой отчет по итогам 2024 года<span class="arrow">▶</span></h2>
+      <p>Компания подвела итоги 2024 года и представила инвесторам интерактивный отчет POSI, посвящённый своей деятельности.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">24 апреля 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies в первом квартале 2025 года нарастила объем отгрузок клиентам до 3,8 млрд руб.<span class="arrow">▶</span></h2>
+      <p>Positive Technologies (эмитент ПАО «Группа Позитив», MOEX: POSI) публикует промежуточную управленческую и консолидированную 
+        финансовую отчетность по итогам первого квартала 2025 года. Объем отгрузок составил 3,8 млрд рублей, 
+        по сравнению с 1,8 млрд рублей за аналогичный период прошлого года.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">07 апреля 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies финализирует итоги 2024 года<span class="arrow">▶</span></h2>
+      <p>Positive Technologies (эмитент ПАО «Группа Позитив», MOEX: POSI) публикует аудированную консолидированную финансовую отчетность по МСФО 
+        и итоговые показатели управленческой отчетности за 2024 год. Общий объем отгрузок, с учетом корректировок на фактическую оплату, 
+        составил 24,1 млрд рублей. Валовая прибыль отгрузок по итогам года составила 22,8 млрд рублей или 95% от общего объема отгрузок. 
+        В 2025 году компания планирует вернуться к таргетируемым темпам роста бизнеса и рентабельности по чистой прибыли (NIC), позволяющей выплачивать дивиденды.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">04 апреля 2025</div>
+      <h2 onclick="toggleNews(this)">Акции дополнительного выпуска Positive Technologies скоро станут доступны для торгов<span class="arrow">▶</span></h2>
+      <p>В декабре 2024 года завершилась эмиссия дополнительных акций Positive Technologies. По правилам, установленным законом о рынке ценных бумаг, 
+        акции дополнительного выпуска имели отдельный от основного выпуска индивидуальный код. В связи с этим они не торговались на Московской бирже.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">02 апреля 2025</div>
+      <h2 onclick="toggleNews(this)">АКРА присвоило Positive Technologies кредитный рейтинг АA-(RU)<span class="arrow">▶</span></h2>
+      <p>Агентство АКРА присвоило кредитный рейтинг Positive Technologies на уровне AA— (RU).</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">12 марта 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies подвела итоги PT NGFW за 2024 год<span class="arrow">▶</span></h2>
+      <p>Positive Technologies 12 марта 2025 года провела ежегодное мероприятие для партнеров «День открытых дверей», 
+        где подвела главные продуктовые итоги года. Фокус был сделан на финансовых результатах межсетевого экрана нового поколения PT NGFW.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">20 февраля 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies выходит на рынок антивирусов<span class="arrow">▶</span></h2>
+      <p>Positive Technologies, один из лидеров в области результативной кибербезопасности, осваивает новый для себя рынок антивирусного ПО, 
+        тем самым укрепляя позиции в сегменте защиты конечных устройств организаций. Компания приобрела долю белорусского 
+        вендора «ВИРУСБЛОКАДА» и намерена совершенствовать технологию антивирусной защиты для внедрения в существующие продукты, 
+        а также для запуска самостоятельного решения этого класса уже в текущем году.</p>
+    </div>
+
+    <div class="news-card">
+      <div class="date">07 февраля 2025</div>
+      <h2 onclick="toggleNews(this)">Positive Technologies подводит предварительные итоги 2024 года<span class="arrow">▶</span></h2>
+      <p>Positive Technologies (эмитент ПАО «Группа Позитив», MOEX: POSI) подводит предварительные итоги деятельности за 2024 год. 
+        Исходя из текущих управленческих данных, объем отгрузок составил около 26 млрд рублей. Итоговое значение фактически 
+        оплаченных отгрузок 2024 года, по ожиданиям менеджмента, составит около 25,5 млрд рублей. Согласно учетной политике компании, 
+        оно будет сформировано по результатам поступления оплат до 31 марта 2025 года за отгруженные в 2024 году лицензии.</p>
+    </div>
+  </div>
+
+  <nav class="sidebar">
+    <div class="logo">Positive Technologies</div>
+    <ul class="menu">
+      <li><a href="company.html">О компании</a></li>
+      <li><a href="news.html" class="active">Новости</a></li>
+      <li><a href="currency.html">Курс валют</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="video.html">Видео</a></li>
+    </ul>
+  </nav>
+
+  <a href="#" class="back-to-top" title="Наверх">↑</a>
+
+  <script>
+    function toggleNews(titleEl) {
+      const card = titleEl.parentElement;
+      card.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
